@@ -53,7 +53,9 @@ function checkAnswer(choiceIndex) {
         score++;
     } else {
         // Incorrect answer - subtract time (adjust this as needed)
-        timer -= 10;
+        clearInterval(timer); // Stop the timer
+        timer -= 10; // Adjust the timer value
+        timer = setInterval(updateTimer, 1000); // Restart the timer
     }
     
     // Move to the next question
@@ -67,6 +69,7 @@ function updateTimer() {
     
     if (timer > 0) {
         timerDisplay.textContent = timer;
+        timer--; // Decrement the timer
     } else {
         // Time's up - end the quiz
         clearInterval(timer);
